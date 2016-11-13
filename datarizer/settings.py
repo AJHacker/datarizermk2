@@ -25,7 +25,7 @@ SECRET_KEY = 'e7^qe2!4w14k%_mqdreow%@*nm3#1qecdzi&fexcw$=x)lwwxx'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['datarizermk2.herokuapp.com']
 
 
 # Application definition
@@ -81,6 +81,8 @@ DATABASES = {
     }
 }
 
+import dj_database_url
+DATABASES[‘default’] = dj_database_url.config()
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
@@ -118,4 +120,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = ‘/static/’
+STATIC_ROOT = ‘staticfiles’
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, ‘static’),
+)
+
+SECURE_PROXY_SSL_HEADER = (‘HTTP_X_FORWARDED_PROTO’, ‘https’)
